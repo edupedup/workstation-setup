@@ -1,0 +1,30 @@
+---
+- hosts: workstations
+  become: true
+  tasks:
+    - name: Install packages
+      package:
+        name: "{{ item }}"
+        state: "present"
+      loop:
+        - vim
+        - terminator
+        - git
+        - python3-pip
+        - tldr
+        - htop
+        - gnome-shell-extensions
+        - zsh
+        - curl
+        - jq
+        - python-pip
+        - virtualenvwrapper
+        - pwgen
+    - name: Install pip dependecies
+      pip:
+        name: "{{ item }}"
+      loop: 
+        - pytest
+        - thefuck
+        - virtualenv 
+
