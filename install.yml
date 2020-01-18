@@ -20,6 +20,12 @@
         - python-pip
         - virtualenvwrapper
         - pwgen
+        - net-tools
+        - whois
+        - vagrant
+        - virtualbox
+        - nmap
+        - lolcat
     - name: Install pip dependecies
       pip:
         name: "{{ item }}"
