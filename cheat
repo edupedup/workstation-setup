@@ -1,0 +1,145 @@
+
+comm : sort file
+
+
+--------fix wifi-------
+sudo modprobe -r brcmfmac ; sudo modprobe brcmfmac
+
+
+---------docker------
+onliner: docker ps | grep flask | cut -d" " -f 1
+
+---------arp spoofing -------------
+
+sudo arpspoof -i wlp3s0 -t 192.168.1.101 (target)  192.168.1.1 (gateway)
+ensure ip forwarding is disable : sudo sysctl net.ipv4.ip_forward=0
+
+------generate file of size-------
+
+!! size of count*bs
+
+dd if=/dev/zero of=file.txt count=1024 bs=1024
+
+---------sort disk usage by size-------
+
+du -hs * | sort -h
+
+-------- install rpm package offline-------
+$ yum install yum-plugin-downloadonly
+$ yum install my_package -y --downloadonly --downloaddir=/nfs
+$ rpm -Uvh *
+
+-------------- arch ---------
+
+mkdir ~/pkgs && cd ~/pkgs
+wget https://aur.archlinux.org/packages/pa/pacaur/PKGBUILD
+makepkg -s
+sudo pacman -U pacaur-4.2.14-1-any.pkg.tar.xz
+
+
+freeze & unfreeze dns :
+sudo chattr +i resolv.conf
+sudo chattr -i resolv.conf
+
+
+ssh -R 3001:localhost:3001 34.242.251.25 -TN
+
+------- Git ------
+$ git filter-branch --force --index-filter 'git rm -r --cached --ignore-unmatch infra/' --prune-empty --tag-name-filter cat -- --all
+remove file from repo AND history
+
+git push local branch to remote master branch
+$ git push scalingo PC-1867-initialisation-tirs-de-performance-api:master
+
+----- OUTILS -----
+view cert info
+$ openssl x509 -in ec2-34-245-114-76.eu-west-1.compute.amazonaws.com.crt -text -noout
+
+copy from shell
+$ cat wrapper | pbcopy
+
+$ top -o %CPU
+$ ip r
+memory usage:
+$ free -m  
+
+mounted disk sizes:
+$ df -aTh
+$ lsblk # show partitions
+$ growpart /dev/xvda 2 # grow partition
+$ resize2fs /dev/xvda2 # resize partition
+
+generate random file:
+$ openssl rand -out output_file.txt -base64 792917038
+
+openssl rand -out spark-worker.log -base64 654029442
+openssl rand -out spark-worker.log.1 -base64 1048863070
+
+clean history:
+cat /dev/null > ~/.bash_history && history -c && exit
+
+---- SSH ---
+ who -u 
+mmrozek  tty1         Aug 17 10:03  2198 
+mmrozek  pts/3        Aug 17 10:09 (:pts/2:S.0) 9021
+
+> echo "HAHAHAHAHAHAHAHA" | write mmrozek pts/3
+
+
+display ssh logs:
+sudo /usr/sbin/sshd -d -p 2222
+
+display os version:
+$ lsb_release -a
+
+fail2ban:
+fail2ban-client set YOURJAILNAMEHERE unbanip IPADDRESSHERE
+fail2ban-client status sshd
+
+----- ANSIBLE ----
+
+ansible:
+  tasks:
+  - name: get variables
+    debug: var=hostvars[inventory_hostname]
+display all host var
+
+
+---- CONF ----
+
+conf DNS:
+$ cat /etc/resolv.conf
+
+kafka:
+$ /usr/bin/kafka-topics --zookeeper zk01.example.com:2181 --list
+
+network interfaces:
+/ect/network/interfaces
+
+----- DNS -----
+
+nsupdate -l
+> delete toto.pp.cloud.alt a
+> send
+
+
+nsupdate -l
+> add toto.pp.cloud.alt 500 a 13.132.13.13
+> send
+
+
+(rndc reload)
+service named restart
+
+Zsh Speed : 	/usr/bin/time zsh -i -c exit 
+Stream zsh output:	zsh -xv
+
+########K8S
+
+kubectl config view
+
+#########UBUNTU
+
+Network interfaces: cat /etc/network/interfaces
+restart networking: sudo systemctl restart networking
+

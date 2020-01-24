@@ -1,0 +1,36 @@
+alias go="~/Softwares/commit_alias.sh"
+
+alias cat="lolcat"
+alias lcat="/bin/cat"
+
+alias glo="git log --graph --decorate --pretty=oneline --abbrev-commit"
+alias ga="git add ."
+alias gs="git status"
+alias gz="git checkout production"
+alias gpr="git checkout production"
+alias gc="git checkout"
+alias gb="git branch"
+alias gco="git commit -m"
+
+alias gwipe='git branch --merged | grep -v master | grep -v dev | xargs -n 1 git branch -d'
+
+alias goops='workon aws; echo '\''mfa token please :'\''; read token && ~/.aws/go_ops_mfa.sh $token > /tmp/ops && source /tmp/ops; rm -f /tmp/ops'
+
+alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
+
+alias cheat='vim /home/edouard.perret/Documents/cheatsheet'
+
+alias gtw='cd ~/Projects/pass-culture'
+
+alias gyolo='git commit -a --amend --no-edit && git push -f'
+
+#Load-aliases
+
+alias loadnvm='[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm'
+alias loadvenvwrapper='source /usr/local/bin/virtualenvwrapper.sh'
+
+alias gps='git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
+
+#alias python='/home/edouard.perret/Projects/pass-culture/pc_env/bin/python3'
+alias pg_dump_11='/usr/lib/postgresql/11/bin/pg_dump'
+alias pg_restore_11='/usr/lib/postgresql/11/bin/pg_restore'
